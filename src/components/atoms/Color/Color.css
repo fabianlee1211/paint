@@ -1,0 +1,9 @@
+.Color {
+  width: 20px;
+  height: 20px;
+  box-shadow: 2px 2px 0px inset rgba(0, 0, 0, 0.7);
+}
+
+.Color:hover {
+  cursor: pointer;
+}
