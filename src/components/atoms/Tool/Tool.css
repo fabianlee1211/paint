@@ -1,0 +1,11 @@
+.Tool {
+  background: #BEBEBE;
+  height: 20px;
+  border-color:#FFFFFF #333333 #333333 #FFFFFF;
+  width: 100%;
+}
+
+.Tool--active {
+  background: #DBDDDC;
+  border-color:#333333 #FFFFFF #FFFFFF #333333;
+}

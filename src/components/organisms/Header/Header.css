@@ -1,0 +1,14 @@
+header {
+  grid-column: 1/3;
+  display: flex;
+  flex-direction: column;
+  padding: 2px;
+}
+
+.Header__Title {
+  background: #02037B;
+  color: white;
+  padding: 2px 5px;
+  font-size: 14px;
+  height: 20px;
+}

@@ -1,0 +1,9 @@
+nav {
+  display: flex;
+  align-items: center;
+}
+
+nav li {
+  font-size: 14px;
+}
+
