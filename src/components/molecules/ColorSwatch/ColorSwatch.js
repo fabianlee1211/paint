@@ -1,9 +1,10 @@
 import React from 'react'
 import Color from '../../atoms/Color/Color'
+import { darkerColors, normalColors } from '../../../constants/defaultColors';
 import './ColorSwatch.css'
 
 const ColorSwatch = ({ options, setOptions }) => {
-  const colors = ['#000000', '#FFFFFF', '#767676']
+  const colors = [ ...darkerColors, ...normalColors ]
 
   return (
     <div className='ColorSwatch Shadow'>

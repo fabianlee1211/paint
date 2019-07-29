@@ -4,7 +4,7 @@ import './Header.css'
 
 const Header = () => (
   <header className="Shadow">
-    <div className="Header__Title">Paint</div>
+    <div className="Header__Title">untitled - Paint</div>
     <Navbar />
   </header>
 )
