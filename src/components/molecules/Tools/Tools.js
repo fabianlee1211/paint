@@ -19,6 +19,8 @@ const Tools = ({ options, setOptions }) => {
         return { activeTool: toolName, lineWidth: 5 };
       case 'eraser':
         return { activeTool: toolName, lineWidth: 5 };
+      case 'rect':
+          return { activeTool: toolName };
       default:
     }
   }

@@ -1,0 +1,21 @@
+.ActiveColors {
+  height: 46px;
+  width: 46px;
+  background: #DBDDDC;
+  border-color:#333333 #FFFFFF #FFFFFF #333333;
+}
+
+.ActiveColors div:first-child, .ActiveColors div:nth-child(2) {
+  position: relative;
+}
+
+.ActiveColors div:first-child {
+  left: 7px;
+  top: 7px;
+  z-index: 1;
+}
+
+.ActiveColors div:nth-child(2) {
+  left: 16px;
+  bottom: 6px;
+}
