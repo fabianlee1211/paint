@@ -1,17 +1,18 @@
 import React from 'react'
+import { useSelector } from 'react-redux'
 import ColorSwatch from '../../molecules/ColorSwatch/ColorSwatch'
 import ActiveColors from '../../molecules/ActiveColors/ActiveColors'
 import './ColorSection.css'
 
-const ColorSection = (props) => {
-  const { options } = props
+const ColorSection = () => {
+  const { foreground, background } = useSelector(state => state.options.color)
   return (
     <section className='ColorSection'>
       <ActiveColors
-        foregroundColor={options.foregroundColor}
-        backgroundColor={options.backgroundColor}
+        foregroundColor={foreground}
+        backgroundColor={background}
       />
-      <ColorSwatch {...props} />
+      <ColorSwatch />
     </section>
   )
 }
