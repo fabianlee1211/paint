@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { useSelector } from 'react-redux'
 import Header from './components/organisms/Header/Header'
 import ToolsSection from './components/organisms/ToolsSection/ToolsSection'
 import ColorSection from './components/organisms/ColorSection/ColorSection'
@@ -9,29 +10,24 @@ import './App.css'
 const App = () => {
   const canvas = React.useRef()
   const previewCanvas = React.useRef()
-  const [canvasSize, setCanvasSize] = useState({ width: 500, height: 500 })
-  const [options, setOptions] = useState({
-    foregroundColor: '#000000',
-    backgroundColor: '#FFFFFF',
-    activeTool: 'pencil',
-    lineWidth: 1,
-  })
+  const { width, height } = useSelector(state => state.canvas.size)
+  const activeTool = useSelector(state => state.options.activeTool)
   const [
     paintToolMouseUp,
     paintToolMouseDown,
     paintToolMouseLeave,
     paintToolMouseMove,
-  ] = usePaintTool(canvas, previewCanvas, options)
+  ] = usePaintTool(canvas, previewCanvas)
 
   const [
     shapeToolMouseUp,
     shapeToolMouseDown,
     shapeToolMouseLeave,
     shapeToolMouseMove,
-  ] = useRectTool(canvas, previewCanvas, options);
+  ] = useRectTool(canvas, previewCanvas);
 
   const mouseEvents = () => {
-    switch (options.activeTool) {
+    switch (activeTool) {
       case 'pencil':
       case 'paint':
       case 'eraser':
@@ -55,18 +51,18 @@ const App = () => {
   return (
     <main className='App'>
       <Header />
-      <ToolsSection options={options} setOptions={setOptions} />
+      <ToolsSection />
       <section className='CanvasSection'>
         <canvas
-          width={canvasSize.width * 1.5}
-          height={canvasSize.height * 1.5}
+          width={width * 1.5}
+          height={height * 1.5}
           ref={previewCanvas}
           className='previewCanvas'
           {...mouseEvents()}
         />
-        <canvas width={canvasSize.width} height={canvasSize.height} ref={canvas} {...mouseEvents()} />
+        <canvas width={width} height={height} ref={canvas} {...mouseEvents()} />
       </section>
-      <ColorSection options={options} setOptions={setOptions} />
+      <ColorSection />
     </main>
   )
 }

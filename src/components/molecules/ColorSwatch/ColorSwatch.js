@@ -1,10 +1,14 @@
 import React from 'react'
+import { useSelector, useDispatch } from 'react-redux'
 import Color from '../../atoms/Color/Color'
-import { darkerColors, normalColors } from '../../../constants/defaultColors';
+import { darkerColors, normalColors } from '../../../constants/defaultColors'
+import { setColor } from '../../../store/options/actions'
 import './ColorSwatch.css'
 
-const ColorSwatch = ({ options, setOptions }) => {
+const ColorSwatch = () => {
   const colors = [ ...darkerColors, ...normalColors ]
+  const activeTool = useSelector(state => state.options.activeTool)
+  const dispatch = useDispatch()
 
   return (
     <div className='ColorSwatch Shadow'>
@@ -12,16 +16,11 @@ const ColorSwatch = ({ options, setOptions }) => {
         <Color
           key={color}
           color={color}
-          onClick={() =>
-            setOptions({
-              ...options,
-              [`${
-                options.activeTool !== 'eraser'
-                  ? 'foregroundColor'
-                  : 'backgroundColor'
-              }`]: color,
-            })
-          }
+          onClick={() => {
+            activeTool !== 'eraser'
+            ? dispatch(setColor({ foreground: color }))
+            : dispatch(setColor({ background: color }))
+          }}
         />
       ))}
     </div>

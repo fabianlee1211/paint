@@ -1,17 +1,20 @@
 import { useState, useEffect } from 'react'
+import { useSelector } from 'react-redux'
 import { clamp } from '../utils/clamp';
 
 const useShapeTool = (canvas, previewCanvas, options) => {
   const [isDrawing, setIsDrawing] = useState(false);
   const [previewPoints, setPreviewPoints] = useState([]);
   const [points, setPoints] = useState([]);
+  const { color } = useSelector(state => state.options)
 
   useEffect(() => {
     const drawShape = () => {
       const context = canvas.current.getContext("2d");
       const previewContext = previewCanvas.current.getContext("2d");
-      context.fillStyle = options.foregroundColor
-      previewContext.fillStyle = options.foregroundColor
+      const { foreground } = color
+      context.fillStyle = foreground
+      previewContext.fillStyle = foreground
       // Draw preview rectangle on preview canvas
       if (previewPoints.length > 0) {
         for (let i = 1; i < previewPoints.length - 1; i++) {

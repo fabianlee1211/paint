@@ -1,10 +1,10 @@
 import React from 'react'
 import Tools from '../../molecules/Tools/Tools'
 
-const ToolsSection = (props) => {
+const ToolsSection = () => {
   return (
     <section>
-      <Tools {...props} />
+      <Tools />
     </section>
   )
 }

@@ -1,22 +1,20 @@
 import { useState, useEffect } from 'react'
+import { useSelector } from 'react-redux'
 import { clamp } from '../utils/clamp'
 
-const usePaintTool = (canvas, previewCanvas, options) => {
+const usePaintTool = (canvas, previewCanvas) => {
   const [isDrawing, setIsDrawing] = useState(false)
   const [points, setPoints] = useState([])
+  const { activeTool, color, toolStyles } = useSelector(state => state.options)
 
   useEffect(() => {
     const drawPaint = () => {
       const context = canvas.current.getContext('2d')
-      const {
-        foregroundColor,
-        backgroundColor,
-        lineWidth,
-        activeTool,
-      } = options
+      const { foreground, background } = color
+      const { lineWidth } = toolStyles
 
       context.strokeStyle =
-        activeTool !== 'eraser' ? foregroundColor : backgroundColor
+        activeTool !== 'eraser' ? foreground : background
       context.lineJoin = 'round'
       context.lineWidth = lineWidth
 
@@ -57,7 +55,6 @@ const usePaintTool = (canvas, previewCanvas, options) => {
 
   const paintToolMouseMove = e => {
     const { offsetLeft, offsetTop } = previewCanvas.current
-    const { color, lineWidth } = options
     if (isDrawing) {
       setPoints([
         ...points,
@@ -65,8 +62,6 @@ const usePaintTool = (canvas, previewCanvas, options) => {
           x: clamp(e.pageX - offsetLeft),
           y: clamp(e.pageY - offsetTop),
           isDragging: true,
-          color,
-          lineWidth,
         },
       ])
     }
