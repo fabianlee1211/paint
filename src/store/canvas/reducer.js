@@ -1,6 +1,5 @@
 import {
-  SET_WIDTH,
-  SET_HEIGHT,
+  SET_SIZE,
   SET_IMAGE_URL,
 } from './actionTypes'
 
@@ -14,20 +13,11 @@ const initialState = () => ({
 
 const canvasReducer = (state = initialState(), { type, payload }) => {
   switch (type) {
-    case SET_WIDTH:
+    case SET_SIZE:
       return {
         ...state,
         size: {
-          ...state.size,
-          width: payload,
-        }
-      }
-    case SET_HEIGHT:
-      return {
-        ...state,
-        size: {
-          ...state.size,
-          height: payload,
+          ...payload,
         }
       }
     case SET_IMAGE_URL:

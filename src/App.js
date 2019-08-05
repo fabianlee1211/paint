@@ -1,10 +1,12 @@
-import React, { useState } from 'react'
+import React, { useEffect } from 'react'
 import { useSelector } from 'react-redux'
+import throttle from 'lodash.throttle'
 import Header from './components/organisms/Header/Header'
 import ToolsSection from './components/organisms/ToolsSection/ToolsSection'
 import ColorSection from './components/organisms/ColorSection/ColorSection'
 import usePaintTool from './hooks/usePaintTool'
-import useRectTool from './hooks/useShapeTool'
+import useRectTool from './hooks/useRectTool'
+import useEllipseTool from './hooks/useEllipseTool'
 import './App.css'
 
 const App = () => {
@@ -12,6 +14,7 @@ const App = () => {
   const previewCanvas = React.useRef()
   const { width, height } = useSelector(state => state.canvas.size)
   const activeTool = useSelector(state => state.options.activeTool)
+
   const [
     paintToolMouseUp,
     paintToolMouseDown,
@@ -20,11 +23,18 @@ const App = () => {
   ] = usePaintTool(canvas, previewCanvas)
 
   const [
-    shapeToolMouseUp,
-    shapeToolMouseDown,
-    shapeToolMouseLeave,
-    shapeToolMouseMove,
-  ] = useRectTool(canvas, previewCanvas);
+    rectToolMouseUp,
+    rectToolMouseDown,
+    rectToolMouseLeave,
+    rectToolMouseMove,
+  ] = useRectTool(canvas, previewCanvas)
+
+  const [
+    ellipseToolMouseUp,
+    ellipseToolMouseDown,
+    ellipseToolMouseLeave,
+    ellipseToolMouseMove,
+  ] = useEllipseTool(canvas, previewCanvas)
 
   const mouseEvents = () => {
     switch (activeTool) {
@@ -39,11 +49,18 @@ const App = () => {
         }
       case 'rect':
         return {
-          onMouseUp: shapeToolMouseUp,
-          onMouseDown: shapeToolMouseDown,
-          onMouseLeave: shapeToolMouseLeave,
-          onMouseMove: shapeToolMouseMove
+          onMouseUp: rectToolMouseUp,
+          onMouseDown: rectToolMouseDown,
+          onMouseLeave: rectToolMouseLeave,
+          onMouseMove: throttle(rectToolMouseMove, 500),
         };
+      case 'circle':
+        return {
+          onMouseUp: ellipseToolMouseUp,
+          onMouseDown: ellipseToolMouseDown,
+          onMouseLeave: ellipseToolMouseLeave,
+          onMouseMove: throttle(ellipseToolMouseMove, 500),
+        }
       default:
     }
   }
@@ -54,8 +71,8 @@ const App = () => {
       <ToolsSection />
       <section className='CanvasSection'>
         <canvas
-          width={width * 1.5}
-          height={height * 1.5}
+          width={width * 2}
+          height={height * 2}
           ref={previewCanvas}
           className='previewCanvas'
           {...mouseEvents()}

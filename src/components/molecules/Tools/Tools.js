@@ -2,8 +2,8 @@ import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import Tool from '../../atoms/Tool/Tool'
 import { capitalizeFirstLetter } from '../../../utils/capitalizeFirstLetter'
+import { setActiveTool, setToolStyles } from '../../../store/options/actions'
 import './Tools.css'
-import { setActiveTool, setToolStyles } from '../../../store/options/actions';
 
 const Tools = () => {
   const tools = [

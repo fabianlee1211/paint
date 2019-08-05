@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react'
 import { useSelector } from 'react-redux'
-import { clamp } from '../utils/clamp';
+import { clamp } from '../utils/canvas/clamp'
 
-const useShapeTool = (canvas, previewCanvas, options) => {
+const useRectTool = (canvas, previewCanvas) => {
   const [isDrawing, setIsDrawing] = useState(false);
   const [previewPoints, setPreviewPoints] = useState([]);
   const [points, setPoints] = useState([]);
@@ -52,24 +52,24 @@ const useShapeTool = (canvas, previewCanvas, options) => {
     drawShape();
   }, [points, previewPoints, isDrawing]);
 
-  const shapeToolMouseDown = e => {
-    const { offsetLeft, offsetTop } = previewCanvas.current;
+  const rectToolMouseDown = e => {
+    const { offsetLeft, offsetTop } = canvas.current;
+
     setIsDrawing(true);
     setPreviewPoints([
       // ...points,
       {
-        x: clamp(e.pageX - offsetLeft),
-        y: clamp(e.pageY - offsetTop),
+        ...clamp(e.pageX - offsetLeft, e.pageY - offsetTop),
         isDragging: false
       }
     ]);
   };
 
-  const shapeToolMouseUp = () => {
+  const rectToolMouseUp = () => {
     setIsDrawing(false);
     if (previewPoints.length > 0) {
       setPoints([
-        ...points,
+        // ...points,
         {
           x: previewPoints[0].x,
           y: previewPoints[0].y,
@@ -81,30 +81,29 @@ const useShapeTool = (canvas, previewCanvas, options) => {
     setPreviewPoints([]);
   };
 
-  const shapeToolMouseMove = e => {
-    const { offsetLeft, offsetTop } = previewCanvas.current;
+  const rectToolMouseMove = e => {
+    const { offsetLeft, offsetTop } = canvas.current;
     if (isDrawing) {
       setPreviewPoints([
         ...previewPoints,
         {
-          x: clamp(e.pageX - offsetLeft),
-          y: clamp(e.pageY - offsetTop),
+          ...clamp(e.pageX - offsetLeft, e.pageY - offsetTop),
           isDragging: true
         }
       ]);
     }
   };
 
-  const shapeToolMouseLeave = () => {
+  const rectToolMouseLeave = () => {
     // setIsDrawing(false);
   };
 
   return [
-    shapeToolMouseUp,
-    shapeToolMouseDown,
-    shapeToolMouseLeave,
-    shapeToolMouseMove
+    rectToolMouseUp,
+    rectToolMouseDown,
+    rectToolMouseLeave,
+    rectToolMouseMove
   ];
 }
 
-export default useShapeTool
+export default useRectTool
