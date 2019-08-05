@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { useSelector } from 'react-redux'
-import { clamp } from '../utils/clamp'
+import { clamp } from '../utils/canvas/clamp'
 
 const usePaintTool = (canvas, previewCanvas) => {
   const [isDrawing, setIsDrawing] = useState(false)
@@ -36,13 +36,12 @@ const usePaintTool = (canvas, previewCanvas) => {
   })
 
   const paintToolMouseDown = e => {
-    const { offsetLeft, offsetTop } = previewCanvas.current
+    const { offsetLeft, offsetTop } = canvas.current
     setIsDrawing(true)
     setPoints([
       ...points,
       {
-        x: clamp(e.pageX - offsetLeft),
-        y: clamp(e.pageY - offsetTop),
+        ...clamp(e.pageX - offsetLeft, e.pageY - offsetTop),
         isDragging: false,
       },
     ])
@@ -54,13 +53,12 @@ const usePaintTool = (canvas, previewCanvas) => {
   }
 
   const paintToolMouseMove = e => {
-    const { offsetLeft, offsetTop } = previewCanvas.current
+    const { offsetLeft, offsetTop } = canvas.current
     if (isDrawing) {
       setPoints([
         ...points,
         {
-          x: clamp(e.pageX - offsetLeft),
-          y: clamp(e.pageY - offsetTop),
+          ...clamp(e.pageX - offsetLeft, e.pageY - offsetTop),
           isDragging: true,
         },
       ])

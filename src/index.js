@@ -20,7 +20,7 @@ const rootReducer = combineReducers({
   canvas: canvasReducer,
 })
 
-const store = createStore(
+export const store = createStore(
   rootReducer,
   composeEnhancers()
 );
