@@ -1,9 +1,15 @@
-nav {
+.Navbar {
   display: flex;
   align-items: center;
 }
 
-nav li {
+.Navbar__Item {
   font-size: 14px;
+}
+
+.Navbar__Item:hover {
+  background-color: var(--header);
+  color: white;
+  cursor: pointer;
 }
 

@@ -1,12 +1,14 @@
 import {
   SET_SIZE,
+  SET_FILE_NAME,
   SET_IMAGE_URL,
 } from './actionTypes'
 
 const initialState = () => ({
+  filename: 'untitled',
   size: {
-    width: 500,
-    height: 500,
+    width: 0,
+    height: 0,
   },
   imageUrl: '',
 })
@@ -19,6 +21,11 @@ const canvasReducer = (state = initialState(), { type, payload }) => {
         size: {
           ...payload,
         }
+      }
+    case SET_FILE_NAME:
+      return {
+        ...state,
+        filename: payload,
       }
     case SET_IMAGE_URL:
       return {

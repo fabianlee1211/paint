@@ -1,0 +1,31 @@
+.NewModal__Window {
+  padding: 2px;
+}
+
+.NewModal__Form {
+  padding: 15px 30px;
+}
+
+.NewModal__FormField {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 5px;
+}
+
+.NewModal__Form input {
+  width: 250px;
+}
+
+.NewModal__Buttons {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.NewModal__Buttons .Button {
+  padding: 3px 15px;
+}
+
+.NewModal__Buttons .Button:first-child {
+  margin-right: 5px;
+}

@@ -11,8 +11,7 @@ const Tools = () => {
     { toolName: 'paint' },
     { toolName: 'eraser' },
     { toolName: 'rect' },
-    { toolName: 'circle' },
-    { toolName: 'line' },
+    { toolName: 'ellipse' },
   ]
 
   const activeTool = useSelector(state => state.options.activeTool)
@@ -27,7 +26,6 @@ const Tools = () => {
       case 'eraser':
         return { lineWidth: 5 };
       case 'circle':
-      case 'line':
       case 'rect':
       default:
     }
