@@ -10,8 +10,8 @@ const Color = ({ color, inward, outward, onClick }) => {
       borderWidth: '2px',
       borderStyle: 'solid',
       boxShadow: 'none',
-      width: '18px',
-      height: '18px',
+      width: '20px',
+      height: '20px',
     }
   }
 

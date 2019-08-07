@@ -1,3 +1,4 @@
+import './index.css'
 import React from 'react';
 import { render } from 'react-dom';
 import { Provider } from 'react-redux'
@@ -8,7 +9,6 @@ import {
   optionsReducer,
   canvasReducer,
 } from './store'
-import './index.css';
 
 const composeEnhancers =
   process.env.NODE_ENV === 'development'

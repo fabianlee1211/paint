@@ -1,0 +1,20 @@
+.Window__Header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--header);
+  color: white;
+  padding: 2px 5px;
+  font-weight: bold;
+}
+
+.Window__Buttons .Button{
+  height: 18px;
+  width: 18px;
+  font-weight: bold;
+  font-size: 12px;
+}
+
+.Window__Buttons .Button:nth-child(2){
+  margin: 0 3px;
+}

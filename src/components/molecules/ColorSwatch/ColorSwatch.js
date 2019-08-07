@@ -6,20 +6,20 @@ import { setColor } from '../../../store/options/actions'
 import './ColorSwatch.css'
 
 const ColorSwatch = () => {
-  const colors = [ ...darkerColors, ...normalColors ]
+  const colors = [...darkerColors, ...normalColors]
   const activeTool = useSelector(state => state.options.activeTool)
   const dispatch = useDispatch()
 
   return (
-    <div className='ColorSwatch Shadow'>
+    <div className="ColorSwatch Shadow">
       {colors.map(color => (
         <Color
           key={color}
           color={color}
           onClick={() => {
             activeTool !== 'eraser'
-            ? dispatch(setColor({ foreground: color }))
-            : dispatch(setColor({ background: color }))
+              ? dispatch(setColor({ foreground: color }))
+              : dispatch(setColor({ background: color }))
           }}
         />
       ))}

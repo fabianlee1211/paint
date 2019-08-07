@@ -1,12 +1,21 @@
+:root {
+  --header: #02037B;
+  --border-concave-up: #FFFFFF #808080 #808080 #FFFFFF;
+  --border-concave-down: #808080 #FFFFFF #FFFFFF #808080;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
   "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
   sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
 }
 
 code {
@@ -19,18 +28,16 @@ nav li {
   list-style: none;
 }
 
-.Shadow {
-  border-width: 1px;
-  border-color:#FFFFFF #808080 #808080 #FFFFFF;
-  border-style: solid;
-}
-
-section {
-  border-width: 1px;
-  border-color:#FFFFFF #808080 #808080 #FFFFFF;
-  border-style: solid;
-}
-
 a {
   text-decoration: none;
+}
+
+input {
+  border-color: var(--border-concave-down);
+}
+
+.Shadow {
+  border-width: 1px;
+  border-color: var(--border-concave-up);
+  border-style: solid;
 }

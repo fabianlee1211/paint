@@ -1,0 +1,10 @@
+.Modal {
+  position: absolute;
+  z-index: 500;
+  background: #BEBEBE;
+  width: 400px;
+  box-sizing: border-box;
+  left: 50%;
+  top: 45%;
+  margin: -150px 0 0 -150px;
+}

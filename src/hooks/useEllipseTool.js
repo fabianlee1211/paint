@@ -86,7 +86,6 @@ const useEllipseTool = (canvas, previewCanvas) => {
   const ellipseToolMouseMove = e => {
     const { offsetLeft, offsetTop } = canvas.current;
     if (isDrawing) {
-      console.log(offsetLeft, offsetTop, e.pageX - offsetLeft, e.pageY - offsetTop)
       setPreviewPoints([
         ...previewPoints,
         {

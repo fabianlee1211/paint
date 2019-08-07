@@ -3,16 +3,20 @@ import { useSelector } from 'react-redux'
 import { clamp } from '../utils/canvas/clamp'
 
 const useRectTool = (canvas, previewCanvas) => {
-  const [isDrawing, setIsDrawing] = useState(false);
-  const [previewPoints, setPreviewPoints] = useState([]);
-  const [points, setPoints] = useState([]);
-  const { color } = useSelector(state => state.options)
+  const [isDrawing, setIsDrawing] = useState(false)
+  const [previewPoints, setPreviewPoints] = useState([])
+  const [points, setPoints] = useState([])
+  const { color, size } = useSelector(state => ({
+    color: state.options.color,
+    size: state.canvas.size,
+  }))
 
   useEffect(() => {
     const drawShape = () => {
-      const context = canvas.current.getContext("2d");
-      const previewContext = previewCanvas.current.getContext("2d");
+      const context = canvas.current.getContext('2d')
+      const previewContext = previewCanvas.current.getContext('2d')
       const { foreground } = color
+      const { width, height } = size
       context.fillStyle = foreground
       previewContext.fillStyle = foreground
       // Draw preview rectangle on preview canvas
@@ -24,7 +28,7 @@ const useRectTool = (canvas, previewCanvas) => {
               previewPoints[0].y,
               previewPoints[i].x - previewPoints[0].x,
               previewPoints[i].y - previewPoints[0].y
-            );
+            )
           }
         }
 
@@ -33,11 +37,11 @@ const useRectTool = (canvas, previewCanvas) => {
           previewPoints[0].y,
           previewPoints[previewPoints.length - 1].x - previewPoints[0].x,
           previewPoints[previewPoints.length - 1].y - previewPoints[0].y
-        );
+        )
       }
       // Clear preview canvas
       if (previewPoints.length <= 0) {
-        previewContext.clearRect(0, 0, 500, 500);
+        previewContext.clearRect(0, 0, width, height)
       }
       // Draw actual rectangle on canvas
       if (points.length && !isDrawing) {
@@ -46,27 +50,27 @@ const useRectTool = (canvas, previewCanvas) => {
           points[points.length - 1].y,
           points[points.length - 1].width,
           points[points.length - 1].height
-        );
+        )
       }
-    };
-    drawShape();
-  }, [points, previewPoints, isDrawing]);
+    }
+    drawShape()
+  }, [points, previewPoints, isDrawing])
 
   const rectToolMouseDown = e => {
-    const { offsetLeft, offsetTop } = canvas.current;
+    const { offsetLeft, offsetTop } = canvas.current
 
-    setIsDrawing(true);
+    setIsDrawing(true)
     setPreviewPoints([
       // ...points,
       {
         ...clamp(e.pageX - offsetLeft, e.pageY - offsetTop),
-        isDragging: false
-      }
-    ]);
-  };
+        isDragging: false,
+      },
+    ])
+  }
 
   const rectToolMouseUp = () => {
-    setIsDrawing(false);
+    setIsDrawing(false)
     if (previewPoints.length > 0) {
       setPoints([
         // ...points,
@@ -74,36 +78,37 @@ const useRectTool = (canvas, previewCanvas) => {
           x: previewPoints[0].x,
           y: previewPoints[0].y,
           width: previewPoints[previewPoints.length - 1].x - previewPoints[0].x,
-          height: previewPoints[previewPoints.length - 1].y - previewPoints[0].y
-        }
-      ]);
+          height:
+            previewPoints[previewPoints.length - 1].y - previewPoints[0].y,
+        },
+      ])
     }
-    setPreviewPoints([]);
-  };
+    setPreviewPoints([])
+  }
 
   const rectToolMouseMove = e => {
-    const { offsetLeft, offsetTop } = canvas.current;
+    const { offsetLeft, offsetTop } = canvas.current
     if (isDrawing) {
       setPreviewPoints([
         ...previewPoints,
         {
           ...clamp(e.pageX - offsetLeft, e.pageY - offsetTop),
-          isDragging: true
-        }
-      ]);
+          isDragging: true,
+        },
+      ])
     }
-  };
+  }
 
   const rectToolMouseLeave = () => {
     // setIsDrawing(false);
-  };
+  }
 
   return [
     rectToolMouseUp,
     rectToolMouseDown,
     rectToolMouseLeave,
-    rectToolMouseMove
-  ];
+    rectToolMouseMove,
+  ]
 }
 
 export default useRectTool

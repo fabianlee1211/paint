@@ -7,6 +7,7 @@
   grid-template-rows: 50px auto 100px;
   background: #BEBEBE;
   overflow: hidden;
+  font-size: 14px;
 }
 
 canvas {
@@ -24,6 +25,13 @@ canvas {
   box-shadow: 1px 1px 0px inset #3a3a3a;
   border: none;
   padding: 3px;
+}
+
+.App__Window {
+  grid-column: 1/3;
+  display: flex;
+  flex-direction: column;
+  padding: 2px;
 }
 
 
