@@ -10,10 +10,6 @@
   font-size: 14px;
 }
 
-canvas {
-  background: white;
-}
-
 .previewCanvas {
   position: absolute;
   background: transparent;

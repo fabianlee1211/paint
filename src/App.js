@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import throttle from 'lodash.throttle'
 import Navbar from './components/molecules/Navbar/Navbar'
@@ -71,10 +71,16 @@ const App = () => {
     }
   }
 
+  useEffect(() => {
+    const context = canvas.current.getContext("2d")
+    context.fillStyle = 'white'
+    context.fillRect(0, 0, width, height)
+  }, [width, height])
+
   return (
     <main className="App">
       <Window showLogo className="App__Window Shadow" title={`${filename} - Paint`}>
-        <Navbar showNewModal={showNewModal} setShowNewModal={setShowNewModal} />
+        <Navbar ref={canvas} showNewModal={showNewModal} setShowNewModal={setShowNewModal} />
       </Window>
       <ToolsSection />
       <section className="CanvasSection">
