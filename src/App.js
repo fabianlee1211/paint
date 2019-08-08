@@ -15,11 +15,12 @@ const App = () => {
   const canvas = React.useRef()
   const previewCanvas = React.useRef()
   const [showNewModal, setShowNewModal] = useState(false)
-  const { width, height } = useSelector(state => state.canvas.size)
-  const { activeTool, filename } = useSelector(state => ({
+  const { activeTool, filename, size } = useSelector(state => ({
+    size: state.canvas.size,
     activeTool: state.options.activeTool,
     filename: state.canvas.filename,
   }))
+  const { width, height } = size
 
   const [
     paintToolMouseUp,
@@ -79,7 +80,7 @@ const App = () => {
 
   return (
     <main className="App">
-      <Window showLogo className="App__Window Shadow" title={`${filename} - Paint`}>
+      <Window showLogo className="App__Window Shadow" title={filename ? `${filename} - Paint` : 'Paint'}>
         <Navbar ref={canvas} showNewModal={showNewModal} setShowNewModal={setShowNewModal} />
       </Window>
       <ToolsSection />
