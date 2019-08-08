@@ -73,7 +73,7 @@ const App = () => {
 
   return (
     <main className="App">
-      <Window className="App__Window Shadow" title={`${filename} - Paint`}>
+      <Window showLogo className="App__Window Shadow" title={`${filename} - Paint`}>
         <Navbar showNewModal={showNewModal} setShowNewModal={setShowNewModal} />
       </Window>
       <ToolsSection />

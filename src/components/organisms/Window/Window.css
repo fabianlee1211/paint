@@ -8,6 +8,17 @@
   font-weight: bold;
 }
 
+.Window__TitleWrapper {
+  display: flex;
+  align-items: center;
+}
+
+.Window__Logo {
+  width: 16px;
+  height: 100%;
+  margin-right: 5px;
+}
+
 .Window__Buttons .Button{
   height: 18px;
   width: 18px;

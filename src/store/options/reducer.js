@@ -9,7 +9,7 @@ const initialState = () => ({
     foreground: '#000000',
     background: '#FFFFFF',
   },
-  activeTool: 'pencil',
+  activeTool: '',
   toolStyles: {
     lineWidth: 1,
     lineDash: 'straight',
