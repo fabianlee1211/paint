@@ -9,7 +9,7 @@ Since lately Microsoft announced that they will terminating Paint from Windows, 
 ## :computer: Technology Used
 
 * Coded with React, Redux
-* Hosted with [Heroku](https://www.netlify.com/)
+* Hosted with [Heroku](https://www.heroku.com/)
 
 ## Current Features
 
@@ -20,6 +20,8 @@ You can draw with:
 * Eraser Tool
 * Rectangle Tool
 * Ellipse Tool
+
+You can also save your drawing as image.
 
 ## Future Plans
 
