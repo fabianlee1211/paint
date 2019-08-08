@@ -5,7 +5,7 @@ import {
 } from './actionTypes'
 
 const initialState = () => ({
-  filename: 'untitled',
+  filename: '',
   size: {
     width: 0,
     height: 0,

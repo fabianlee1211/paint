@@ -24,7 +24,7 @@ const Tools = () => {
       case 'paint':
         return { lineWidth: 5 };
       case 'eraser':
-        return { lineWidth: 5 };
+        return { lineWidth: 10 };
       case 'circle':
       case 'rect':
       default:
